@@ -8,6 +8,7 @@ const Home = () => {
 
   return (
     <div>
+      <h1>Articles :</h1>
       {loadingState === "loading" ? (
         <div>loading...</div>
       ) : loadingState === "error" ? (

@@ -31,6 +31,7 @@ const AddPost = () => {
   };
   return (
     <div>
+      <h2>Ajouter un post :</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="title">Titre:</label>
