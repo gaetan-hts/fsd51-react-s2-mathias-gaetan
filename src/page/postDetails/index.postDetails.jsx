@@ -1,27 +1,27 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import NavBar from "../../component/NavBar";
+import { selectPosts } from "../../store/selector";
 
 const PostDetail = () => {
   const { postId } = useParams();
   const [post, setPost] = useState(null);
-  const posts = useSelector((state) => state.posts.posts); // Assurez-vous d'importer le state approprié depuis votre store Redux
+  const posts = useSelector(selectPosts);
 
-  // Logique pour charger les détails du post avec l'ID postId
+  console.log(posts);
+  console.log(postId);
+
   useEffect(() => {
     const selectedPost = posts.find((post) => post.id === parseInt(postId));
     if (selectedPost) {
       setPost(selectedPost);
     } else {
-      // Gérer le cas où le post n'est pas trouvé
       console.log(`Post with ID ${postId} not found.`);
     }
   }, [postId, posts]);
 
   return (
     <div>
-      <NavBar />
       <h1>Détails du Post</h1>
       {post ? (
         <div>

@@ -7,7 +7,7 @@ const ListItem = ({ item }) => {
   return (
     <div className={"taskItem"}>
       <div className={"up"}>
-        <Link to={`/task/${item.id}`}>{item.title}</Link>
+        <Link to={`/post/${item.id}`}>{item.title}</Link>
       </div>
     </div>
   );
