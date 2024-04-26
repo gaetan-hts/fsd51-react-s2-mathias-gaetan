@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import NavBar from "../../component/NavBar";
 import { addPost } from "../../store/slice/postSlice";
 
 const AddPost = () => {
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [author, setAuthor] = useState("");
+  const [body, setBody] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -15,29 +13,24 @@ const AddPost = () => {
     setTitle(event.target.value);
   };
 
-  const handleContentChange = (event) => {
-    setContent(event.target.value);
-  };
-
-  const handleAuthorChange = (event) => {
-    setAuthor(event.target.value);
+  const handleBodyChange = (event) => {
+    setBody(event.target.value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     // Vérifiez si les champs sont vides
-    if (!title || !content || !author) {
+    if (!title || !body) {
       alert("Veuillez remplir tous les champs.");
       return;
     }
-    dispatch(addPost({ title, content, author }));
+    dispatch(addPost({ title, body, userId: "1" }));
 
     navigate("/");
   };
   return (
     <div>
-      <NavBar />
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="title">Titre:</label>
@@ -49,21 +42,8 @@ const AddPost = () => {
           />
         </div>
         <div>
-          <label htmlFor="content">Contenu:</label>
-          <textarea
-            id="content"
-            value={content}
-            onChange={handleContentChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="author">Auteur:</label>
-          <input
-            type="text"
-            id="author"
-            value={author}
-            onChange={handleAuthorChange}
-          />
+          <label htmlFor="body">Contenu:</label>
+          <textarea id="body" value={body} onChange={handleBodyChange} />
         </div>
         <button type="submit">Ajouter</button>
       </form>

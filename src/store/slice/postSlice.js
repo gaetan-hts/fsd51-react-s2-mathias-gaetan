@@ -22,15 +22,24 @@ const postSlice = createSlice({
   name: "post",
   initialState: {
     posts: [],
-    post: {
-      title: "",
-      content: "",
-      author: "",
-      comments: [],
-    },
     loading: "idle", // 'idle' | 'loading' | 'error'
   },
-  reducers: {},
+  reducers: {
+    addComment(state, action) {
+      const { postId, content } = action.payload;
+      const post = state.posts.find((post) => post.id === postId);
+      if (post) {
+        if (!post.comments) {
+          post.comments = [];
+        }
+        const newComment = {
+          id: Date.now(),
+          content,
+        };
+        post.comments.push(newComment);
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchPosts.pending, (state, action) => {
@@ -49,7 +58,7 @@ const postSlice = createSlice({
         if (status === 201) {
           state.posts.push({
             ...data,
-            id: Date.now(),
+            useId: "1",
           });
           state.post = {
             ...state.post,
@@ -63,5 +72,7 @@ const postSlice = createSlice({
       });
   },
 });
+
+export const { addComment } = postSlice.actions;
 
 export default postSlice.reducer;

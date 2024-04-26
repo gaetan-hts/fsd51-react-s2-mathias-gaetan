@@ -13,11 +13,13 @@ const Home = () => {
       ) : loadingState === "error" ? (
         <div>Error, please try again</div>
       ) : posts.length > 0 ? (
-        posts.map((task) => <ListItem key={task.id} item={task} />)
+        [...posts]
+          .reverse()
+          .map((post) => <ListItem key={post.id} item={post} />)
       ) : (
         <span>
           Nothing to display,
-          <br /> you can look for a rest or add a new task to complete.
+          <br /> you can look for a rest or add a new post to complete.
         </span>
       )}
     </div>
