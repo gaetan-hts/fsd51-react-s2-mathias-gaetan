@@ -42,7 +42,7 @@ const PostDetail = () => {
                 {post.comments.map((item) => (
                   <li key={item.id}>
                     Date : {formatTimestamp(item.id)} / contenu : {item.content}{" "}
-                    / auteur Id :{post.userId}
+                    / auteur Id :{item.authorId}
                   </li>
                 ))}
               </ul>

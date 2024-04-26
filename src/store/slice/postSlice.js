@@ -35,6 +35,7 @@ const postSlice = createSlice({
         const newComment = {
           id: Date.now(),
           content,
+          authorId: 1,
         };
         post.comments.push(newComment);
       }
